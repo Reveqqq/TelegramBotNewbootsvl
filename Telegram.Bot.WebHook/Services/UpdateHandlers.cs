@@ -103,11 +103,16 @@ public class UpdateHandlers
                 chatAction: ChatAction.Typing,
                 cancellationToken: cancellationToken);
 
-            const string filePath = "Files/tux.png";
+            const string filePath = "Files/startPhoto.png";
             await using FileStream fileStream = new(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             var fileName = filePath.Split(Path.DirectorySeparatorChar).Last();
 
-            const string caption = "Привет! Давай знакомиться👋🏼\r\nЯ помогу тебе рассчитать стоимость товара с площадки POIZON в рублях.\r\nМои возможности /usage";
+            const string caption = @"Привет! Это бот команды newboots.vl (https://t.me/newboots_vl) — твоих помощников в мире товаров из Китая.
+Мы поможем тебе рассчитать стоимость товара с площадки POIZON в рублях.
+
+Для этого напиши стоимость выбранного товара в ¥ (CNY) и бот пришлет тебе итоговую стоимость в ₽ (RUB)
+
+Например: 584";
 
             return await botClient.SendPhotoAsync(
                 chatId: message.Chat.Id,
