@@ -1,3 +1,4 @@
+using StateMachine;
 using Telegram.Bot.StateMachine;
 
 namespace Telegram.Bot.States;
@@ -14,9 +15,13 @@ class InitState : IState
     public async Task<MessageEventResult> Update(MessageEvent data)
     {
         //TODO: парсер на цену
-        if (data.Message != "123")
-            return "введите цену";
+        int price;
+        if (!int.TryParse(data.Message, out price))
+        {
+            return "Введите корректную цену";
+        }
 
+        _stateMachine.SetPrice(data.Id, price);
         _stateMachine.SetState(data.Id, new CategoryState(_stateMachine));
 
         return "Выберите категорию";
