@@ -16,6 +16,6 @@ public class CategoryState : IState
             return "нет такой категории";
 
         _stateMachine.SetState(data.Id, new InitState(_stateMachine));
-        return "Категория выбрана, стоимость:" + _stateMachine.GetPrice(data.Id);
+        return "Категория выбрана, стоимость: " + _stateMachine.GetPrice(data.Id);
     }
 }
